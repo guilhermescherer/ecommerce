@@ -1,5 +1,6 @@
 package com.ecommerce.core.model;
 
+import com.ecommerce.core.model.state.ReceivedState;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,9 @@ public class Order {
     @ManyToOne
     private Customer customer;
     @OneToOne(cascade = CascadeType.ALL)
-    private State status;
+    private State state;
 
+    public Order() {
+        this.state = new ReceivedState();
+    }
 }
