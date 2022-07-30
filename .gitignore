@@ -6,6 +6,10 @@ target/
 !**/core/src/test/**/target/
 !**/eureka/src/main/**/target/
 !**/eureka/src/test/**/target/
+!**/config/src/main/**/target/
+!**/config/src/test/**/target/
+!**/shipping/src/main/**/target/
+!**/shipping/src/test/**/target/
 
 ### IntelliJ IDEA ###
 /.idea/*
