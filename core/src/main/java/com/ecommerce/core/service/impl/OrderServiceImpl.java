@@ -6,6 +6,7 @@ import com.ecommerce.core.service.OrderService;
 import org.springframework.stereotype.Service;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -18,12 +19,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order save(Order order) {
-        order.getProductsOrder().forEach(po -> {
-            if(isNull(po.getOrder())) {
-                po.setOrder(order);
-            }
-        });
+        order.getProductsOrder().stream()
+                .filter(po -> isNull(po.getOrder()))
+                .forEach(po -> po.setOrder(order));
 
         return orderRepository.saveAndFlush(order);
+    }
+
+    @Override
+    public Order getOrderById(Long id) {
+        return nonNull(id) ? orderRepository.findById(id).orElse(null) : null;
     }
 }

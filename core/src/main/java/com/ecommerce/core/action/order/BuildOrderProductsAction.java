@@ -1,19 +1,19 @@
 package com.ecommerce.core.action.order;
 
-import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.annotation.Action;
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.model.Product;
 import com.ecommerce.core.model.ProductOrder;
+import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.ProductService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ecommerce.core.validator.ProductValidator.productNotFound;
 import static com.ecommerce.core.validator.ProductValidator.verifyProductStock;
+import static com.ecommerce.core.validator.Validator.notFound;
 
 @Action
 public class BuildOrderProductsAction extends OrderProcess {
@@ -31,7 +31,7 @@ public class BuildOrderProductsAction extends OrderProcess {
         orderData.getProductsOrder()
                 .forEach(po -> {
                     Product product = productService.getProductById(po.getProduct());
-                    productNotFound(product, po.getProduct());
+                    notFound(Product.class, product, po.getProduct());
                     verifyProductStock(product, po.getAmount());
 
                     ProductOrder productOrder = new ProductOrder();

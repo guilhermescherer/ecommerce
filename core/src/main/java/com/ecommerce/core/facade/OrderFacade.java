@@ -6,4 +6,6 @@ import com.ecommerce.core.dto.OrderDto;
 public interface OrderFacade {
 
     OrderDto createOrder(OrderData orderData);
+
+    OrderDto getOrderById(Long id);
 }

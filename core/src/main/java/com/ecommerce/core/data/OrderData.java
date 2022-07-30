@@ -11,5 +11,7 @@ public class OrderData {
     @NotNull
     private Long customer;
     @NotNull
+    private Long address;
+    @NotNull
     private List<ProductOrderData> productsOrder;
 }

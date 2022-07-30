@@ -1,15 +1,16 @@
 package com.ecommerce.core.validator;
 
 import com.ecommerce.core.exception.NotFoundException;
+import com.ecommerce.core.model.Address;
 import com.ecommerce.core.model.Customer;
 
 import static java.util.Objects.isNull;
 
-public interface CustomerValidator {
+public abstract class CustomerValidator {
 
-    static void customerNotFound(Customer customer, Long id) {
-        if(isNull(customer)) {
-            String message = String.format("Not found customer with id [%s]", id);
+    public static void notFoundAddressInCustomer(Customer customer, Address address, Long id) {
+        if(isNull(address)) {
+            String message = String.format("Not found address with id [%s] in customer [%s]", id, customer.getId());
             throw new NotFoundException(message);
         }
     }

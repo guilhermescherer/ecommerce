@@ -1,5 +1,6 @@
 package com.ecommerce.core.builder;
 
+import com.ecommerce.core.model.Address;
 import com.ecommerce.core.model.Customer;
 import com.ecommerce.core.model.Order;
 import com.ecommerce.core.model.ProductOrder;
@@ -13,6 +14,7 @@ import java.util.List;
 public class OrderBuilder {
 
     private Customer customer;
+    private Address address;
     private List<ProductOrder> productsOrder;
     private BigDecimal price;
 
@@ -22,6 +24,7 @@ public class OrderBuilder {
         order.setCustomer(this.customer);
         order.setProductsOrder(this.productsOrder);
         order.setPrice(this.price);
+        order.setAddress(this.address);
 
         return orderService.save(order);
     }

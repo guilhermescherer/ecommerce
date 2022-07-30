@@ -1,26 +1,24 @@
 package com.ecommerce.core.model;
 
-import com.ecommerce.core.exception.OrderSituationException;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "state_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public void toReceived(Order order)  {
-        throw new OrderSituationException("Order cannot be received");
-    }
+    public State() {}
 
     public abstract String getName();
 }
+
+

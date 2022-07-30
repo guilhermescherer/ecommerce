@@ -24,6 +24,8 @@ public class Order {
     private Customer customer;
     @OneToOne(cascade = CascadeType.ALL)
     private State state;
+    @ManyToOne
+    private Address address;
 
     public Order() {
         this.state = new ReceivedState();

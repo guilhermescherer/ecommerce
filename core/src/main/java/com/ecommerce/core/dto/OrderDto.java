@@ -12,6 +12,7 @@ public class OrderDto {
     private Long id;
     private BigDecimal price;
     private CustomerDto customer;
+    private AddressDto address;
     private StateDto state;
     private List<ProductOrderDto> productsOrder;
 
@@ -19,6 +20,7 @@ public class OrderDto {
         this.id = order.getId();
         this.price = order.getPrice();
         this.customer = new CustomerDto(order.getCustomer());
+        this.address = new AddressDto(order.getAddress());
         this.state = new StateDto(order.getState());
         this.productsOrder = order.getProductsOrder().stream().map(ProductOrderDto::new).toList();
     }
