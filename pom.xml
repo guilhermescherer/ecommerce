@@ -11,6 +11,9 @@
 
     <modules>
         <module>core</module>
+        <module>config</module>
+        <module>eureka</module>
+        <module>shipping</module>
     </modules>
 
     <properties>
