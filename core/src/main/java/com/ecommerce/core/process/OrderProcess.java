@@ -9,9 +9,8 @@ public abstract class OrderProcess {
 
     private OrderProcess next;
 
-    public OrderProcess linkWith(OrderProcess next) {
+    public void linkWith(OrderProcess next) {
         this.next = next;
-        return next;
     }
 
     public abstract OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder);

@@ -5,10 +5,12 @@ import com.ecommerce.core.annotation.Action;
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.model.ProductOrder;
+import org.springframework.core.annotation.Order;
 
 import java.math.BigDecimal;
 
 @Action
+@Order(4)
 public class CalculateOrderPriceAction extends OrderProcess {
 
     @Override

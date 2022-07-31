@@ -7,6 +7,7 @@ import com.ecommerce.core.model.Product;
 import com.ecommerce.core.model.ProductOrder;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.ProductService;
+import org.springframework.core.annotation.Order;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import static com.ecommerce.core.validator.ProductValidator.verifyProductStock;
 import static com.ecommerce.core.validator.Validator.notFound;
 
 @Action
+@Order(3)
 public class BuildOrderProductsAction extends OrderProcess {
 
     private final ProductService productService;

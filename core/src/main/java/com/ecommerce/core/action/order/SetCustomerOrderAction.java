@@ -6,10 +6,12 @@ import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.model.Customer;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.CustomerService;
+import org.springframework.core.annotation.Order;
 
 import static com.ecommerce.core.validator.Validator.notFound;
 
 @Action
+@Order(1)
 public class SetCustomerOrderAction extends OrderProcess {
 
     private final CustomerService customerService;

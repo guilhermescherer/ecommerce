@@ -5,12 +5,14 @@ import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.model.Address;
 import com.ecommerce.core.process.OrderProcess;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
 import static com.ecommerce.core.validator.CustomerValidator.notFoundAddressInCustomer;
 
 @Action
+@Order(2)
 public class SetDeliveryAddressAction extends OrderProcess {
 
     @Override
