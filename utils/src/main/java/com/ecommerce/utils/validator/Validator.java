@@ -1,6 +1,6 @@
-package com.ecommerce.core.validator;
+package com.ecommerce.utils.validator;
 
-import com.ecommerce.core.exception.NotFoundException;
+import com.ecommerce.utils.exception.NotFoundException;
 
 import static java.util.Objects.isNull;
 

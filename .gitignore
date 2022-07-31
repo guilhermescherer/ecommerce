@@ -10,6 +10,8 @@ target/
 !**/config/src/test/**/target/
 !**/shipping/src/main/**/target/
 !**/shipping/src/test/**/target/
+!**/utils/src/main/**/target/
+!**/utils/src/test/**/target/
 
 ### IntelliJ IDEA ###
 /.idea/*

@@ -9,5 +9,6 @@ public class ShippingData {
 
     @NotNull
     private Long order;
-
+    @NotNull
+    private Long state;
 }

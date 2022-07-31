@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.ecommerce.core.validator.ProductValidator.verifyProductStock;
-import static com.ecommerce.core.validator.Validator.notFound;
+import static com.ecommerce.utils.validator.Validator.notFound;
 
 @Action
 @Order(3)
