@@ -17,7 +17,7 @@ public class StateServiceImpl implements StateService {
     }
 
     @Override
-    public State getStateById(Long id) {
-        return isNull(id) ? null : stateRepository.findById(id).orElse(null);
+    public State getStateById(String name) {
+        return isNull(name) ? null : stateRepository.findById(name).orElse(null);
     }
 }

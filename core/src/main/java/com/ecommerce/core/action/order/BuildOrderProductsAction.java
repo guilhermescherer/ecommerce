@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.ecommerce.core.validator.ProductValidator.verifyProductStock;
-import static com.ecommerce.utils.validator.Validator.notFound;
+import static com.ecommerce.utils.validator.Validator.notFoundEntity;
 
 @Action
 @Order(3)
@@ -33,7 +33,7 @@ public class BuildOrderProductsAction extends OrderProcess {
         orderData.getProductsOrder()
                 .forEach(po -> {
                     Product product = productService.getProductById(po.getProduct());
-                    notFound(Product.class, product, po.getProduct());
+                    notFoundEntity(Product.class, product, po.getProduct());
                     verifyProductStock(product, po.getAmount());
 
                     ProductOrder productOrder = new ProductOrder();

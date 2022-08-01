@@ -1,9 +1,9 @@
 package com.ecommerce.shipping.repository;
 
-import com.ecommerce.shipping.model.State;
+import com.ecommerce.shipping.model.OrderShipping;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StateRepository extends JpaRepository<State, String> {
+public interface OrderShippingRepository extends JpaRepository<OrderShipping, Long> {
 }

@@ -4,34 +4,43 @@ import com.ecommerce.shipping.annotation.Facade;
 import com.ecommerce.shipping.data.ShippingData;
 import com.ecommerce.shipping.dto.ShippingDto;
 import com.ecommerce.shipping.facade.ShippingFacade;
+import com.ecommerce.shipping.model.OrderShipping;
 import com.ecommerce.shipping.model.ShippingCompany;
 import com.ecommerce.shipping.model.State;
-import com.ecommerce.shipping.service.ShippingService;
+import com.ecommerce.shipping.service.OrderShippingService;
+import com.ecommerce.shipping.service.ShippingCompanyService;
 import com.ecommerce.shipping.service.StateService;
 
-import static com.ecommerce.utils.validator.Validator.notFound;
+import java.math.BigDecimal;
+
+import static com.ecommerce.shipping.validator.Validator.notFoundCompanyToState;
+import static com.ecommerce.utils.validator.Validator.notFoundEntity;
 
 @Facade
 public class ShippingFacadeImpl implements ShippingFacade {
 
-    private final ShippingService shippingService;
+    private final ShippingCompanyService shippingCompanyService;
     private final StateService stateService;
+    private final OrderShippingService orderShippingService;
 
-    public ShippingFacadeImpl(ShippingService shippingService, StateService stateService) {
-        this.shippingService = shippingService;
+    public ShippingFacadeImpl(ShippingCompanyService shippingCompanyService, StateService stateService, OrderShippingService orderShippingService) {
+        this.shippingCompanyService = shippingCompanyService;
         this.stateService = stateService;
+        this.orderShippingService = orderShippingService;
     }
 
     @Override
     public ShippingDto createShipping(ShippingData shippingData) {
         State state = stateService.getStateById(shippingData.getState());
-        notFound(State.class, state, shippingData.getState());
+        notFoundEntity(State.class, state, shippingData.getState());
 
-        ShippingCompany company = shippingService.getShippingCompanyByState(state);
+        ShippingCompany company = shippingCompanyService.getShippingCompanyByState(state);
+        notFoundCompanyToState(company, state);
 
-        // getShippingPriceByCompanyAndDestiny()
-        // createOrderShipping()
+        BigDecimal price = shippingCompanyService.getShippingPriceByState(company, state);
 
-        return null;
+        OrderShipping orderShipping = orderShippingService.createOrderShipping(state, company, price, shippingData.getOrder());
+
+        return new ShippingDto(orderShipping);
     }
 }

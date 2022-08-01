@@ -8,7 +8,7 @@ import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.CustomerService;
 import org.springframework.core.annotation.Order;
 
-import static com.ecommerce.utils.validator.Validator.notFound;
+import static com.ecommerce.utils.validator.Validator.notFoundEntity;
 
 @Action
 @Order(1)
@@ -23,7 +23,7 @@ public class SetCustomerOrderAction extends OrderProcess {
     @Override
     public OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder) {
         Customer customer = customerService.getCustomerById(orderData.getCustomer());
-        notFound(Customer.class, customer, orderData.getCustomer());
+        notFoundEntity(Customer.class, customer, orderData.getCustomer());
 
         orderBuilder.setCustomer(customer);
 

@@ -20,5 +20,7 @@ public class ShippingCompany {
             joinColumns = {@JoinColumn(name = "fk_company")},
             inverseJoinColumns = {@JoinColumn(name = "fk_state")})
     private List<State> states;
+    @OneToMany(mappedBy = "shippingCompany", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderShipping> ordersShipping;
     private Integer score;
 }

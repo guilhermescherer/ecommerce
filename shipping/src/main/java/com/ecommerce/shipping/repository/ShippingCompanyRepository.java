@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface ShippingCompanyRepository extends JpaRepository<ShippingCompany, Long> {
 
-    List<ShippingCompany> findShippingCompaniesByStates(List<State> states);
+    List<ShippingCompany> findShippingCompanyByStates(State state);
+//    List<ShippingCompany> findShippingCompaniesByStates(List<State> states);
 }

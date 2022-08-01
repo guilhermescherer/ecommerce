@@ -9,7 +9,7 @@ import com.ecommerce.core.model.Order;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.OrderService;
 
-import static com.ecommerce.core.validator.Validator.notFound;
+import static com.ecommerce.utils.validator.Validator.notFoundEntity;
 
 @Facade
 public class OrderFacadeImpl implements OrderFacade {
@@ -33,7 +33,7 @@ public class OrderFacadeImpl implements OrderFacade {
     @Override
     public OrderDto getOrderById(Long id) {
         Order order = orderService.getOrderById(id);
-        notFound(Order.class, order, id);
+        notFoundEntity(Order.class, order, id);
 
         return new OrderDto(order);
     }
