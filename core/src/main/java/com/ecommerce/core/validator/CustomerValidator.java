@@ -1,6 +1,6 @@
 package com.ecommerce.core.validator;
 
-import com.ecommerce.core.exception.NotFoundException;
+import com.ecommerce.common.exception.NotFoundException;
 import com.ecommerce.core.model.Address;
 import com.ecommerce.core.model.Customer;
 

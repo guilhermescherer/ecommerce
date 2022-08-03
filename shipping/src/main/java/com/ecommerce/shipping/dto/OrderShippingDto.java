@@ -11,21 +11,21 @@ import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 
 @Getter
 @Setter
-public class ShippingDto {
+public class OrderShippingDto {
 
     private Long id;
     private Long order;
     private BigDecimal price;
     private ShippingCompanyDto shippingCompany;
-    private StateDto state;
+    private DeliveryAddressDto deliveryAddress;
     private List<HistoryShippingDto> history;
 
-    public ShippingDto(OrderShipping orderShipping) {
+    public OrderShippingDto(OrderShipping orderShipping) {
         this.id = orderShipping.getId();
         this.order = orderShipping.getOrder();
         this.price = orderShipping.getPrice();
         this.shippingCompany = new ShippingCompanyDto(orderShipping.getShippingCompany());
-        this.state = new StateDto(orderShipping.getState());
+        this.deliveryAddress = new DeliveryAddressDto(orderShipping.getDeliveryAddress());
         this.history = isNotEmpty(orderShipping.getHistory()) ? orderShipping.getHistory().stream().map(HistoryShippingDto::new).toList() : null;
     }
 }

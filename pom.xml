@@ -14,7 +14,7 @@
         <module>config</module>
         <module>eureka</module>
         <module>shipping</module>
-        <module>utils</module>
+        <module>common</module>
     </modules>
 
     <properties>

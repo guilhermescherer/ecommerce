@@ -8,7 +8,7 @@ import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.CustomerService;
 import org.springframework.core.annotation.Order;
 
-import static com.ecommerce.utils.validator.Validator.notFoundEntity;
+import static com.ecommerce.common.validator.Validator.notFoundEntity;
 
 @Action
 @Order(1)

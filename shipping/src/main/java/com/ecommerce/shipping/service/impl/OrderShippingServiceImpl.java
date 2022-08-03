@@ -1,13 +1,11 @@
 package com.ecommerce.shipping.service.impl;
 
 import com.ecommerce.shipping.model.OrderShipping;
-import com.ecommerce.shipping.model.ShippingCompany;
-import com.ecommerce.shipping.model.State;
 import com.ecommerce.shipping.repository.OrderShippingRepository;
 import com.ecommerce.shipping.service.OrderShippingService;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
+import static java.util.Objects.nonNull;
 
 @Service
 public class OrderShippingServiceImpl implements OrderShippingService {
@@ -19,14 +17,12 @@ public class OrderShippingServiceImpl implements OrderShippingService {
     }
 
     @Override
-    public OrderShipping createOrderShipping(State state, ShippingCompany shippingCompany, BigDecimal price, Long order) {
-        OrderShipping orderShipping = new OrderShipping();
-
-        orderShipping.setOrder(order);
-        orderShipping.setState(state);
-        orderShipping.setPrice(price);
-        orderShipping.setShippingCompany(shippingCompany);
-
+    public OrderShipping save(OrderShipping orderShipping) {
         return orderShippingRepository.save(orderShipping);
+    }
+
+    @Override
+    public OrderShipping getOrderShippingById(Long id) {
+        return nonNull(id) ? orderShippingRepository.findById(id).orElse(null) : null;
     }
 }

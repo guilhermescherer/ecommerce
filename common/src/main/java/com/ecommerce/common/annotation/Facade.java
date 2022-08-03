@@ -1,4 +1,4 @@
-package com.ecommerce.shipping.annotation;
+package com.ecommerce.common.annotation;
 
 import org.springframework.stereotype.Component;
 

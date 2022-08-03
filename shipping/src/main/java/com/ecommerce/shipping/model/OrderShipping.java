@@ -21,7 +21,7 @@ public class OrderShipping {
     @ManyToOne
     private ShippingCompany shippingCompany;
     @OneToOne
-    private State state;
+    private DeliveryAddress deliveryAddress;
     @OneToMany(mappedBy = "orderShipping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HistoryShipping> history;
 }

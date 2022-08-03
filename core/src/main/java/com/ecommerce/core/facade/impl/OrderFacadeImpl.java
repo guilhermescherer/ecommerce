@@ -1,6 +1,5 @@
 package com.ecommerce.core.facade.impl;
 
-import com.ecommerce.core.annotation.Facade;
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.dto.OrderDto;
@@ -8,8 +7,9 @@ import com.ecommerce.core.facade.OrderFacade;
 import com.ecommerce.core.model.Order;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.OrderService;
+import com.ecommerce.common.annotation.Facade;
 
-import static com.ecommerce.utils.validator.Validator.notFoundEntity;
+import static com.ecommerce.common.validator.Validator.notFoundEntity;
 
 @Facade
 public class OrderFacadeImpl implements OrderFacade {

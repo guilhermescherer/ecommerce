@@ -1,4 +1,4 @@
-package com.ecommerce.utils.exception;
+package com.ecommerce.common.exception;
 
 public class AbstractException extends RuntimeException {
 
