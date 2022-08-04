@@ -1,5 +1,6 @@
 package com.ecommerce.shipping.controller;
 
+import com.ecommerce.common.controller.BaseController;
 import com.ecommerce.shipping.data.OrderShippingData;
 import com.ecommerce.shipping.dto.OrderShippingDto;
 import com.ecommerce.shipping.facade.OrderShippingFacade;
@@ -12,7 +13,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/shipping")
-public class ShippingController {
+public class ShippingController extends BaseController {
 
     private final OrderShippingFacade orderShippingFacade;
 

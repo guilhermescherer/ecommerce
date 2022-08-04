@@ -1,24 +1,24 @@
-package com.ecommerce.core.configuration.exception;
+package com.ecommerce.common.controller;
 
-import com.ecommerce.core.dto.ExceptionErrorDto;
+import com.ecommerce.common.dto.ExceptionErrorDto;
+import com.ecommerce.common.exception.HttpAbstractException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 
-@RestControllerAdvice
-public class ExceptionControllerAdvice {
+public class BaseController {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(Exception.class)
-    public ExceptionErrorDto handleException(Exception ex) {
+    @ExceptionHandler(HttpAbstractException.class)
+    public ExceptionErrorDto handleException(HttpAbstractException ex) {
         ExceptionErrorDto exceptionErrorDto = new ExceptionErrorDto();
-        exceptionErrorDto.setStatus(HttpStatus.BAD_REQUEST.value());
-        exceptionErrorDto.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
+        exceptionErrorDto.setStatus(ex.getStatus());
+        exceptionErrorDto.setError(ex.getError());
         exceptionErrorDto.setMessage(ex.getLocalizedMessage());
         exceptionErrorDto.setTimestamp(LocalDateTime.now());
         return exceptionErrorDto;
     }
+
 }

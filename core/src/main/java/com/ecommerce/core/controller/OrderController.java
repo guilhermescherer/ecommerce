@@ -1,5 +1,6 @@
 package com.ecommerce.core.controller;
 
+import com.ecommerce.common.controller.BaseController;
 import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.dto.OrderDto;
 import com.ecommerce.core.facade.OrderFacade;
@@ -13,7 +14,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/order")
-public class OrderController {
+public class OrderController extends BaseController {
 
     private final OrderFacade orderFacade;
 
