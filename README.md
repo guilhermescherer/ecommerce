@@ -11,9 +11,9 @@
 - Spring Cloud
 - Spring Config
 - Spring Eureka
-- Lombok
-- Feign Client
-- Apache Collect Commons 
-- Hibernate Validation
+- Spring Jpa with MariaDB(MySQL)
 - Spring DevTools
-- Jpa with MariaDB(MySQL)
+- Spring Validation
+- Spring Feign Client
+- Lombok
+- Apache Collections Commons 
