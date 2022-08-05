@@ -2,8 +2,10 @@ package com.ecommerce.core.controller;
 
 import com.ecommerce.common.controller.BaseController;
 import com.ecommerce.core.data.OrderData;
+import com.ecommerce.core.data.UpdateOrderStateTypeData;
 import com.ecommerce.core.dto.OrderDto;
 import com.ecommerce.core.facade.OrderFacade;
+import com.ecommerce.core.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +27,21 @@ public class OrderController extends BaseController {
 
     @PostMapping
     public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid OrderData orderData, UriComponentsBuilder uriBuilder) {
-        OrderDto order = orderFacade.createOrder(orderData);
+        Order order = orderFacade.createOrder(orderData);
 
         URI uri = uriBuilder.path("/order/{id}").buildAndExpand(order.getId()).toUri();
-        return ResponseEntity.created(uri).body(order);
+        return ResponseEntity.created(uri).body(new OrderDto(order));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
-        return ResponseEntity.ok(orderFacade.getOrderById(id));
+        OrderDto orderDto = new OrderDto(orderFacade.getOrderById(id));
+        return ResponseEntity.ok(orderDto);
+    }
+
+    @PutMapping("/{id}/state")
+    public ResponseEntity<?> updateOrderState(@PathVariable Long id, @RequestParam("type") UpdateOrderStateTypeData type) {
+        orderFacade.orderCollected(id, type);
+        return ResponseEntity.ok().build();
     }
 }

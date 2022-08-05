@@ -30,4 +30,14 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderById(Long id) {
         return nonNull(id) ? orderRepository.findById(id).orElse(null) : null;
     }
+
+    @Override
+    public void updateOrderToCollected(Order order) {
+        order.getState().toCollected(order);
+    }
+
+    @Override
+    public void updateOrderToDelivered(Order order) {
+        order.getState().toDelivered(order);
+    }
 }

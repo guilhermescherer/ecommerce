@@ -1,6 +1,5 @@
 package com.ecommerce.core.model.state;
 
-import com.ecommerce.core.model.Order;
 import com.ecommerce.core.model.State;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,18 +12,13 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("ReceivedState")
-public class ReceivedState extends State {
+@DiscriminatorValue("DeliveredState")
+public class DeliveredState extends State {
 
-    private static final String NAME = "Received";
+    private static final String NAME = "Delivered";
 
     @Override
     public String getName() {
         return NAME;
-    }
-
-    @Override
-    public void toCollected(Order order) {
-        order.setState(new CollectedState());
     }
 }

@@ -1,11 +1,14 @@
 package com.ecommerce.core.facade;
 
 import com.ecommerce.core.data.OrderData;
-import com.ecommerce.core.dto.OrderDto;
+import com.ecommerce.core.data.UpdateOrderStateTypeData;
+import com.ecommerce.core.model.Order;
 
 public interface OrderFacade {
 
-    OrderDto createOrder(OrderData orderData);
+    Order createOrder(OrderData orderData);
 
-    OrderDto getOrderById(Long id);
+    Order getOrderById(Long id);
+
+    void orderCollected(Long id, UpdateOrderStateTypeData type);
 }

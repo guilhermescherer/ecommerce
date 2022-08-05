@@ -13,10 +13,10 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("ReceivedState")
-public class ReceivedState extends State {
+@DiscriminatorValue("CollectedState")
+public class CollectedState extends State {
 
-    private static final String NAME = "Received";
+    private static final String NAME = "Collected";
 
     @Override
     public String getName() {
@@ -24,7 +24,7 @@ public class ReceivedState extends State {
     }
 
     @Override
-    public void toCollected(Order order) {
+    public void toDelivered(Order order) {
         order.setState(new CollectedState());
     }
 }

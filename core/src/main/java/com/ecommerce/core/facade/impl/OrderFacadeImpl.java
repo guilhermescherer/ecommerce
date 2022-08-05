@@ -2,7 +2,7 @@ package com.ecommerce.core.facade.impl;
 
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
-import com.ecommerce.core.dto.OrderDto;
+import com.ecommerce.core.data.UpdateOrderStateTypeData;
 import com.ecommerce.core.facade.OrderFacade;
 import com.ecommerce.core.model.Order;
 import com.ecommerce.core.process.OrderProcess;
@@ -22,19 +22,31 @@ public class OrderFacadeImpl implements OrderFacade {
         this.orderProcess = orderProcess;
     }
 
-    public OrderDto createOrder(OrderData orderData) {
+    public Order createOrder(OrderData orderData) {
         OrderBuilder orderBuilder = new OrderBuilder();
         orderProcess.perform(orderData, orderBuilder);
-        Order order = orderBuilder.build(orderService);
 
-        return new OrderDto(order);
+        return orderBuilder.build(orderService);
     }
 
     @Override
-    public OrderDto getOrderById(Long id) {
+    public Order getOrderById(Long id) {
         Order order = orderService.getOrderById(id);
         notFoundEntity(Order.class, order, id);
 
-        return new OrderDto(order);
+        return order;
+    }
+
+    @Override
+    public void orderCollected(Long id, UpdateOrderStateTypeData type) {
+        Order order = this.getOrderById(id);
+
+        if(UpdateOrderStateTypeData.TO_COLLECTED.equals(type)) {
+            orderService.updateOrderToCollected(order);
+        } else if (UpdateOrderStateTypeData.TO_DELIVERED.equals(type)) {
+            orderService.updateOrderToDelivered(order);
+        }
+
+        orderService.save(order);
     }
 }
