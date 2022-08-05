@@ -5,7 +5,7 @@ import com.ecommerce.common.exception.NotFoundExceptionHttp;
 
 import static java.util.Objects.isNull;
 
-public abstract class Validator {
+public abstract class CompanyValidator {
 
     public static void notFoundCompanyToAddress(Object object, DeliveryAddress address) {
         if(isNull(object)) {

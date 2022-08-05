@@ -15,8 +15,6 @@ public class OrderShipping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "`order`")
-    private Long order;
     private BigDecimal price;
     @ManyToOne
     private ShippingCompany shippingCompany;

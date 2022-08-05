@@ -10,7 +10,8 @@ public class AddressDto {
     private String state;
     private String city;
     private String street;
-    private String number;
+    private Integer number;
+
     public AddressDto(Address address) {
         this.id = address.getId();
         this.state = address.getState().name();

@@ -2,10 +2,12 @@ package com.ecommerce.shipping.dto;
 
 import com.ecommerce.shipping.model.ShippingCompany;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ShippingCompanyDto {
 
     private Long id;

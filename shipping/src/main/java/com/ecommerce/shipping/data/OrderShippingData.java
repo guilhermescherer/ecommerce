@@ -8,8 +8,6 @@ import javax.validation.constraints.NotNull;
 @Data
 public class OrderShippingData {
 
-    @NotNull
-    private Long order;
     @NotNull @NotEmpty
     private String state;
     @NotNull @NotEmpty

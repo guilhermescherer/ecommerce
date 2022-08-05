@@ -1,6 +1,6 @@
 package com.ecommerce.core.action.order;
 
-import com.ecommerce.core.annotation.Action;
+import com.ecommerce.common.annotation.Action;
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.model.Product;
@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ecommerce.core.validator.ProductValidator.verifyProductStock;
 import static com.ecommerce.common.validator.Validator.notFoundEntity;
+import static com.ecommerce.core.validator.ProductValidator.verifyProductStock;
 
 @Action
 @Order(3)

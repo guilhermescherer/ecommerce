@@ -17,7 +17,7 @@ import com.ecommerce.common.annotation.Facade;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
-import static com.ecommerce.shipping.validator.Validator.notFoundCompanyToAddress;
+import static com.ecommerce.shipping.validator.CompanyValidator.notFoundCompanyToAddress;
 import static com.ecommerce.common.validator.Validator.notFoundEntity;
 
 @Facade
@@ -40,8 +40,6 @@ public class OrderOrderShippingFacadeImpl implements OrderShippingFacade {
     @Transactional(rollbackOn = Exception.class)
     public OrderShippingDto createOrderShipping(OrderShippingData orderShippingData) {
         OrderShippingBuilder orderShippingBuilder = new OrderShippingBuilder();
-
-        orderShippingBuilder.setOrder(orderShippingData.getOrder());
 
         DeliveryAddress address = getAddressByShippingData(orderShippingData);
         orderShippingBuilder.setDeliveryAddress(address);

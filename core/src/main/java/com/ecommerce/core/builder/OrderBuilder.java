@@ -17,6 +17,7 @@ public class OrderBuilder {
     private Address address;
     private List<ProductOrder> productsOrder;
     private BigDecimal price;
+    private Long orderShippingId;
 
     public Order build(OrderService orderService) {
         Order order = new Order();
@@ -25,6 +26,7 @@ public class OrderBuilder {
         order.setProductsOrder(this.productsOrder);
         order.setPrice(this.price);
         order.setAddress(this.address);
+        order.setOrderShippingId(this.orderShippingId);
 
         return orderService.save(order);
     }

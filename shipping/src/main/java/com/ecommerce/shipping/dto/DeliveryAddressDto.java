@@ -2,11 +2,13 @@ package com.ecommerce.shipping.dto;
 
 import com.ecommerce.shipping.model.DeliveryAddress;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class DeliveryAddressDto {
 
     private Long id;

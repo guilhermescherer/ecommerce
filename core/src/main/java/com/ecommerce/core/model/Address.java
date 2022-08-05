@@ -20,7 +20,7 @@ public class Address {
     private AddressState state;
     private String city;
     private String street;
-    private String number;
+    private Integer number;
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 }

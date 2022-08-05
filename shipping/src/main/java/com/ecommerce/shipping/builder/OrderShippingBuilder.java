@@ -21,7 +21,6 @@ public class OrderShippingBuilder {
     public OrderShipping build(OrderShippingService orderShippingService) {
         OrderShipping orderShipping = new OrderShipping();
 
-        orderShipping.setOrder(this.order);
         orderShipping.setPrice(this.price);
         orderShipping.setShippingCompany(this.shippingCompany);
         orderShipping.setDeliveryAddress(this.deliveryAddress);

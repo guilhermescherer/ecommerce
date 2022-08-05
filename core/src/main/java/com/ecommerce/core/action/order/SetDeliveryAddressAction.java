@@ -1,6 +1,6 @@
 package com.ecommerce.core.action.order;
 
-import com.ecommerce.core.annotation.Action;
+import com.ecommerce.common.annotation.Action;
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.model.Address;
