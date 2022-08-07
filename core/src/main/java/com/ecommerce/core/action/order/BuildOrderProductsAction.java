@@ -7,6 +7,8 @@ import com.ecommerce.core.model.Product;
 import com.ecommerce.core.model.ProductOrder;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 
 import java.math.BigDecimal;
@@ -19,6 +21,8 @@ import static com.ecommerce.core.validator.ProductValidator.verifyProductStock;
 @Action
 @Order(3)
 public class BuildOrderProductsAction extends OrderProcess {
+
+    private static final Logger LOG = LoggerFactory.getLogger(BuildOrderProductsAction.class);
 
     private final ProductService productService;
 
@@ -44,6 +48,9 @@ public class BuildOrderProductsAction extends OrderProcess {
                     productOrder.setPrice(price);
 
                     productsOrder.add(productOrder);
+
+                    String message = String.format("Product [%d] with amount [%d] added to Order", product.getId(), po.getAmount());
+                    LOG.info(message);
                 });
 
         orderBuilder.setProductsOrder(productsOrder);

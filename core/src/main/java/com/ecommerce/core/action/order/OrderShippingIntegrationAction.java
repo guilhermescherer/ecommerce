@@ -8,12 +8,16 @@ import com.ecommerce.core.model.Address;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.shipping.data.OrderShippingData;
 import com.ecommerce.shipping.dto.OrderShippingDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 
 @Action
 @Order(5)
 public class OrderShippingIntegrationAction extends OrderProcess {
+
+    private static final Logger LOG = LoggerFactory.getLogger(OrderShippingIntegrationAction.class);
 
     private final ShippingClient shippingClient;
 
@@ -33,9 +37,13 @@ public class OrderShippingIntegrationAction extends OrderProcess {
         orderShippingData.setCity(address.getCity());
         orderShippingData.setState(address.getState().name());
 
+        LOG.info("Requesting OrderShipping to Shipping API");
+
         OrderShippingDto orderShipping = shippingClient.createOrderShipping(orderShippingData);
 
         orderBuilder.setOrderShippingId(orderShipping.getId());
+
+        LOG.info(String.format("OrderShipping [%d] added to Order", orderShipping.getId()));
 
         return orderBuilder;
     }

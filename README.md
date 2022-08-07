@@ -1,6 +1,6 @@
 # E-commerce API 
 
-#### Used Design Patterns
+#### Design Patterns
 - Action
 - State
 - Chain of Responsibility
