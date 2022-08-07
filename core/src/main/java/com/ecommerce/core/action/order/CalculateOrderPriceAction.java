@@ -22,6 +22,6 @@ public class CalculateOrderPriceAction extends OrderProcess {
 
         orderBuilder.setPrice(price);
 
-        return performNext(orderData, orderBuilder);
+        return orderBuilder;
     }
 }

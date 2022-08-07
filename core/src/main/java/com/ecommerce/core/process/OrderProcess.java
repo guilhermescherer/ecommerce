@@ -13,9 +13,19 @@ public abstract class OrderProcess {
         this.next = next;
     }
 
-    public abstract OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder);
+    public OrderBuilder perform(OrderData orderData) {
+        OrderBuilder orderBuilder = new OrderBuilder();
+        return performChild(orderData, orderBuilder);
+    }
+
+    private OrderBuilder performChild(OrderData orderData, OrderBuilder orderBuilder) {
+        OrderBuilder builder = perform(orderData, orderBuilder);
+        return performNext(orderData, builder);
+    }
 
     protected OrderBuilder performNext(OrderData orderData, OrderBuilder orderBuilder) {
-        return isNull(next) ? orderBuilder : next.perform(orderData, orderBuilder);
+        return isNull(next) ? orderBuilder : next.performChild(orderData, orderBuilder);
     }
+
+    protected abstract OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder);
 }

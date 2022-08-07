@@ -28,6 +28,6 @@ public class SetDeliveryAddressAction extends OrderProcess {
 
         orderBuilder.setAddress(address);
 
-        return performNext(orderData, orderBuilder);
+        return orderBuilder;
     }
 }

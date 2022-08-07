@@ -6,6 +6,8 @@ import com.ecommerce.core.data.OrderData;
 import com.ecommerce.core.model.Customer;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.core.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 
 import static com.ecommerce.common.validator.Validator.notFoundEntity;
@@ -13,6 +15,8 @@ import static com.ecommerce.common.validator.Validator.notFoundEntity;
 @Action
 @Order(1)
 public class SetCustomerOrderAction extends OrderProcess {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SetCustomerOrderAction.class);
 
     private final CustomerService customerService;
 
@@ -27,6 +31,8 @@ public class SetCustomerOrderAction extends OrderProcess {
 
         orderBuilder.setCustomer(customer);
 
-        return performNext(orderData, orderBuilder);
+        LOG.info(String.format("Customer [%d] added to Order", customer.getId()));
+
+        return orderBuilder;
     }
 }

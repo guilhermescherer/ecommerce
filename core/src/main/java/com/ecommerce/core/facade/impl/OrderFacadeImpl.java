@@ -23,8 +23,7 @@ public class OrderFacadeImpl implements OrderFacade {
     }
 
     public Order createOrder(OrderData orderData) {
-        OrderBuilder orderBuilder = new OrderBuilder();
-        orderProcess.perform(orderData, orderBuilder);
+        OrderBuilder orderBuilder = orderProcess.perform(orderData);
 
         return orderBuilder.build(orderService);
     }

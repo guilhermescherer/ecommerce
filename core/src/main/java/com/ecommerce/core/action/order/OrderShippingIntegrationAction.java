@@ -37,6 +37,6 @@ public class OrderShippingIntegrationAction extends OrderProcess {
 
         orderBuilder.setOrderShippingId(orderShipping.getId());
 
-        return performNext(orderData, orderBuilder);
+        return orderBuilder;
     }
 }

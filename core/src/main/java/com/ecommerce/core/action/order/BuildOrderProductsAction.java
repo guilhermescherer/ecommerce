@@ -48,7 +48,7 @@ public class BuildOrderProductsAction extends OrderProcess {
 
         orderBuilder.setProductsOrder(productsOrder);
 
-        return performNext(orderData, orderBuilder);
+        return orderBuilder;
     }
 
     private static BigDecimal getOrderPrice(Integer amount, Product product) {
