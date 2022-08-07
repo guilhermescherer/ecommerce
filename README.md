@@ -7,7 +7,7 @@
 - Builder
 - Facade
 
-#### Frameworks:
+#### Frameworks
 - Spring Cloud
 - Spring Config
 - Spring Eureka
