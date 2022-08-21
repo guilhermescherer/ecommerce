@@ -7,6 +7,7 @@ import com.ecommerce.core.dto.OrderDto;
 import com.ecommerce.core.facade.OrderFacade;
 import com.ecommerce.core.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -43,5 +44,10 @@ public class OrderController extends BaseController {
     public ResponseEntity<?> updateOrderState(@PathVariable Long id, @RequestParam("type") UpdateOrderStateTypeData type) {
         orderFacade.orderCollected(id, type);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/port")
+    public String infoPort(@Value("${local.server.port}") String port) {
+        return String.format("Running in port [%s]", port);
     }
 }

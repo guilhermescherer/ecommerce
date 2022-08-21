@@ -15,6 +15,7 @@
         <module>eureka</module>
         <module>shipping</module>
         <module>common</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
