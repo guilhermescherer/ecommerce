@@ -16,6 +16,7 @@
 - Spring Validation
 - Spring Feign Client
 - Spring Sleuth
+- Spring Gateway - Load balancing
 - Lombok
 - Apache Collections Commons 
 
