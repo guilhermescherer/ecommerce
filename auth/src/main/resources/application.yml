@@ -1,0 +1,11 @@
+server:
+  port: 8085
+
+configs:
+  auth:
+    provider-uri: "http://localhost:8085"
+    jks:
+      keypass: 123456
+      storepass: 123456
+      alias: ecommerce
+      path: keystore/ecommerce.jks

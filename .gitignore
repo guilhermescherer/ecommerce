@@ -12,6 +12,8 @@ target/
 !**/shipping/src/test/**/target/
 !**/utils/src/main/**/target/
 !**/utils/src/test/**/target/
+!**/auth/src/main/**/target/
+!**/auth/src/test/**/target/
 
 ### IntelliJ IDEA ###
 /.idea/*
