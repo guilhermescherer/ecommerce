@@ -27,7 +27,7 @@ public abstract class State {
         throw new OrderStateException("Order cannot be delivered");
     }
 
-    public abstract String getName();
+    public abstract String getClassName();
 }
 
 

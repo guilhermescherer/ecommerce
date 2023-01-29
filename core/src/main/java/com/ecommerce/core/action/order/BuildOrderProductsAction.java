@@ -53,7 +53,7 @@ public class BuildOrderProductsAction extends OrderProcess {
                     LOG.info(message);
                 });
 
-        orderBuilder.setProductsOrder(productsOrder);
+        orderBuilder.withProductsOrder(productsOrder);
 
         return orderBuilder;
     }

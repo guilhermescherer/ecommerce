@@ -2,6 +2,7 @@ package com.ecommerce.core.process;
 
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
+import com.ecommerce.core.model.Order;
 
 import static java.util.Objects.isNull;
 
@@ -14,7 +15,7 @@ public abstract class OrderProcess {
     }
 
     public OrderBuilder perform(OrderData orderData) {
-        OrderBuilder orderBuilder = new OrderBuilder();
+        OrderBuilder orderBuilder = Order.builder();
         return performChild(orderData, orderBuilder);
     }
 

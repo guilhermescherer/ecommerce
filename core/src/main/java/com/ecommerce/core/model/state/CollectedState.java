@@ -19,7 +19,7 @@ public class CollectedState extends State {
     private static final String NAME = "Collected";
 
     @Override
-    public String getName() {
+    public String getClassName() {
         return NAME;
     }
 

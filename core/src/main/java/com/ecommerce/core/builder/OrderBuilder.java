@@ -4,30 +4,56 @@ import com.ecommerce.core.model.Address;
 import com.ecommerce.core.model.Customer;
 import com.ecommerce.core.model.Order;
 import com.ecommerce.core.model.ProductOrder;
+import com.ecommerce.core.model.State;
+import com.ecommerce.core.model.state.ReceivedState;
+import com.ecommerce.core.model.state.ReceivedShippingProblemState;
 import com.ecommerce.core.service.OrderService;
-import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Data
+
 public class OrderBuilder {
 
-    private Customer customer;
-    private Address address;
-    private List<ProductOrder> productsOrder;
-    private BigDecimal price;
-    private Long orderShippingId;
+    private final Order order;
+    private State state;
+
+    public OrderBuilder() {
+        order = new Order();
+        state = new ReceivedState();
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void withCustomer(Customer customer) {
+        order.setCustomer(customer);
+    }
+
+    public void withAddress(Address address) {
+        order.setAddress(address);
+    }
+
+    public void withProductsOrder(List<ProductOrder> productOrders) {
+        order.setProductsOrder(productOrders);
+    }
+
+    public void withPrice(BigDecimal price) {
+        order.setPrice(price);
+    }
+
+    public void withShipping(Long id) {
+        order.setShipping(id);
+    }
+
+    public OrderBuilder withShippingProblem() {
+        state = new ReceivedShippingProblemState();
+        return this;
+    }
 
     public Order build(OrderService orderService) {
-        Order order = new Order();
-
-        order.setCustomer(this.customer);
-        order.setProductsOrder(this.productsOrder);
-        order.setPrice(this.price);
-        order.setAddress(this.address);
-        order.setOrderShippingId(this.orderShippingId);
-
+        order.setState(state);
         return orderService.save(order);
     }
 }

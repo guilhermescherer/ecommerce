@@ -21,17 +21,17 @@ public class SetDeliveryAddressAction extends OrderProcess {
 
     @Override
     public OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder) {
-        List<Address> addresses = orderBuilder.getCustomer().getAddresses();
+        List<Address> addresses = orderBuilder.getOrder().getCustomer().getAddresses();
 
         addresses.stream()
                 .filter(a -> a.getId().equals(orderData.getAddress()))
                 .findFirst()
                 .ifPresentOrElse(
                         (address) -> {
-                            orderBuilder.setAddress(address);
+                            orderBuilder.withAddress(address);
                             LOG.info(String.format("Address [%d] added to Order", address.getId()));
                         },
-                        () -> throwNotFoundAddressInCustomer(orderBuilder.getCustomer(), orderData.getAddress()));
+                        () -> throwNotFoundAddressInCustomer(orderBuilder.getOrder().getCustomer(), orderData.getAddress()));
 
         return orderBuilder;
     }

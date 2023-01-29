@@ -30,7 +30,7 @@ public class OrderShippingIntegrationAction extends OrderProcess {
     public OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder) {
         OrderShippingData orderShippingData = new OrderShippingData();
 
-        Address address = orderBuilder.getAddress();
+        Address address = orderBuilder.getOrder().getAddress();
 
         orderShippingData.setNumber(address.getNumber());
         orderShippingData.setStreet(address.getStreet());
@@ -41,7 +41,7 @@ public class OrderShippingIntegrationAction extends OrderProcess {
 
         OrderShippingDto orderShipping = shippingClient.createOrderShipping(orderShippingData);
 
-        orderBuilder.setOrderShippingId(orderShipping.getId());
+        orderBuilder.withShipping(orderShipping.getId());
 
         LOG.info(String.format("OrderShipping [%d] added to Order", orderShipping.getId()));
 

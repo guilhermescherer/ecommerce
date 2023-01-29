@@ -18,7 +18,7 @@ public class DeliveredState extends State {
     private static final String NAME = "Delivered";
 
     @Override
-    public String getName() {
+    public String getClassName() {
         return NAME;
     }
 }

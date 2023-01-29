@@ -9,6 +9,6 @@ public class StateDto {
     private final String name;
 
     public StateDto(State state) {
-        this.name = state.getName();
+        this.name = state.getClassName();
     }
 }

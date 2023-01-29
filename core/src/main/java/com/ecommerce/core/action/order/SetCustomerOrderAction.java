@@ -29,7 +29,7 @@ public class SetCustomerOrderAction extends OrderProcess {
         Customer customer = customerService.getCustomerById(orderData.getCustomer());
         notFoundEntity(Customer.class, customer, orderData.getCustomer());
 
-        orderBuilder.setCustomer(customer);
+        orderBuilder.withCustomer(customer);
 
         LOG.info(String.format("Customer [%d] added to Order", customer.getId()));
 

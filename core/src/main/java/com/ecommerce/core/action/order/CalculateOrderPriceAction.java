@@ -19,12 +19,12 @@ public class CalculateOrderPriceAction extends OrderProcess {
 
     @Override
     public OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder) {
-        BigDecimal price = orderBuilder.getProductsOrder()
+        BigDecimal price = orderBuilder.getOrder().getProductsOrder()
                 .stream()
                 .map(ProductOrder::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        orderBuilder.setPrice(price);
+        orderBuilder.withPrice(price);
 
         LOG.info(String.format("Calculated price [%s] to Order", price));
 

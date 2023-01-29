@@ -13,18 +13,18 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("ReceivedState")
-public class ReceivedState extends State {
+@DiscriminatorValue("ReceivedShippingProblem")
+public class ReceivedShippingProblemState extends State {
 
-    private static final String NAME = "Received";
+	private static final String NAME = "ReceivedShippingProblem";
 
-    @Override
-    public String getClassName() {
-        return NAME;
-    }
+	@Override
+	public String getClassName() {
+		return NAME;
+	}
 
-    @Override
-    public void toCollected(Order order) {
-        order.setState(new CollectedState());
-    }
+	@Override
+	public void toCollected(Order order) {
+		order.setState(new CollectedState());
+	}
 }
