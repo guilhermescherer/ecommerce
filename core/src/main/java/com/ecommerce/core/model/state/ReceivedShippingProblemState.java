@@ -16,13 +16,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ReceivedShippingProblem")
 public class ReceivedShippingProblemState extends State {
 
-	private static final String NAME = "ReceivedShippingProblem";
-
-	@Override
-	public String getClassName() {
-		return NAME;
-	}
-
 	@Override
 	public void toReceived(Order order) {
 		order.setState(new ReceivedState());

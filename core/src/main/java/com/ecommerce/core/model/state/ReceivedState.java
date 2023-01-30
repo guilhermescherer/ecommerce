@@ -16,13 +16,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ReceivedState")
 public class ReceivedState extends State {
 
-    public static final String NAME = "Received";
-
-    @Override
-    public String getClassName() {
-        return NAME;
-    }
-
     @Override
     public void toCollected(Order order) {
         order.setState(new CollectedState());

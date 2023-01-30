@@ -15,10 +15,4 @@ import javax.persistence.Entity;
 @DiscriminatorValue("DeliveredState")
 public class DeliveredState extends State {
 
-    public static final String NAME = "Delivered";
-
-    @Override
-    public String getClassName() {
-        return NAME;
-    }
 }

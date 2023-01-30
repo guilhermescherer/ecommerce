@@ -1,6 +1,6 @@
 package com.ecommerce.core.service.impl;
 
-import com.ecommerce.core.data.UpdateOrderStateData;
+import com.ecommerce.core.data.UpdateStateData;
 import com.ecommerce.core.model.Order;
 import com.ecommerce.core.model.State;
 import com.ecommerce.core.repository.OrderRepository;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import static com.ecommerce.core.model.State.METHOD_PREFIX;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -38,13 +37,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateState(Order order, UpdateOrderStateData updateOrderState) {
-        String name = updateOrderState.getName();
-        State state = order.getState();
-
+    public void updateState(Order order, UpdateStateData updateOrderState) {
         try {
-            String methodName = METHOD_PREFIX + name;
-            Method method = state.getClass().getMethod(methodName, Order.class);
+            State state = order.getState();
+
+            Method method = state.getClass().getMethod(updateOrderState.getMethodName(), Order.class);
             method.invoke(state, order);
 
             this.save(order);

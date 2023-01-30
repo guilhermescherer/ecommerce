@@ -5,7 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Getter
 @Setter
@@ -14,9 +21,6 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "state_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class State {
-
-    public static final String METHOD_PREFIX = "to";
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,8 +36,6 @@ public abstract class State {
     public void toReceived(Order order) {
         throw new OrderStateException("Order cannot be received");
     }
-
-    public abstract String getClassName();
 }
 
 

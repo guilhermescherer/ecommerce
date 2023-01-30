@@ -2,7 +2,7 @@ package com.ecommerce.core.facade.impl;
 
 import com.ecommerce.core.builder.OrderBuilder;
 import com.ecommerce.core.data.OrderData;
-import com.ecommerce.core.data.UpdateOrderStateData;
+import com.ecommerce.core.data.UpdateStateData;
 import com.ecommerce.core.facade.OrderFacade;
 import com.ecommerce.core.model.Order;
 import com.ecommerce.core.process.OrderProcess;
@@ -22,6 +22,7 @@ public class OrderFacadeImpl implements OrderFacade {
         this.orderProcess = orderProcess;
     }
 
+    @Override
     public Order createOrder(OrderData orderData) {
         OrderBuilder orderBuilder = orderProcess.perform(orderData);
 
@@ -37,9 +38,9 @@ public class OrderFacadeImpl implements OrderFacade {
     }
 
     @Override
-    public void updateState(Long id, UpdateOrderStateData type) {
+    public void updateState(Long id, UpdateStateData updateState) {
         Order order = this.getOrderById(id);
 
-        orderService.updateState(order, type);
+        orderService.updateState(order, updateState);
     }
 }
