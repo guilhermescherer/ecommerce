@@ -1,14 +1,14 @@
 package com.ecommerce.core.converter;
 
-import com.ecommerce.core.data.UpdateOrderStateTypeData;
+import com.ecommerce.core.data.UpdateOrderStateData;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UpdateOrderStateDataEnumConverter implements Converter<String, UpdateOrderStateTypeData> {
+public class UpdateOrderStateDataEnumConverter implements Converter<String, UpdateOrderStateData> {
 
     @Override
-    public UpdateOrderStateTypeData convert(String source) {
-        return UpdateOrderStateTypeData.get(source);
+    public UpdateOrderStateData convert(String source) {
+        return UpdateOrderStateData.get(source);
     }
 }

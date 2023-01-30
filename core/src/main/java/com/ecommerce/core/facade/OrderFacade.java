@@ -1,7 +1,7 @@
 package com.ecommerce.core.facade;
 
 import com.ecommerce.core.data.OrderData;
-import com.ecommerce.core.data.UpdateOrderStateTypeData;
+import com.ecommerce.core.data.UpdateOrderStateData;
 import com.ecommerce.core.model.Order;
 
 public interface OrderFacade {
@@ -10,5 +10,5 @@ public interface OrderFacade {
 
     Order getOrderById(Long id);
 
-    void orderCollected(Long id, UpdateOrderStateTypeData type);
+    void updateState(Long id, UpdateOrderStateData type);
 }

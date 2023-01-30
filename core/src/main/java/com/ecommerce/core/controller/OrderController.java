@@ -2,7 +2,7 @@ package com.ecommerce.core.controller;
 
 import com.ecommerce.common.controller.BaseController;
 import com.ecommerce.core.data.OrderData;
-import com.ecommerce.core.data.UpdateOrderStateTypeData;
+import com.ecommerce.core.data.UpdateOrderStateData;
 import com.ecommerce.core.dto.OrderDto;
 import com.ecommerce.core.facade.OrderFacade;
 import com.ecommerce.core.model.Order;
@@ -41,8 +41,8 @@ public class OrderController extends BaseController {
     }
 
     @PutMapping("/{id}/state")
-    public ResponseEntity<?> updateOrderState(@PathVariable Long id, @RequestParam("type") UpdateOrderStateTypeData type) {
-        orderFacade.orderCollected(id, type);
+    public ResponseEntity<?> updateState(@PathVariable Long id, @RequestParam("type") UpdateOrderStateData type) {
+        orderFacade.updateState(id, type);
         return ResponseEntity.ok().build();
     }
 

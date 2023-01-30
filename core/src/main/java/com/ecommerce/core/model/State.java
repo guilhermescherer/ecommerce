@@ -15,6 +15,8 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "state_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class State {
 
+    public static final String METHOD_PREFIX = "to";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +27,10 @@ public abstract class State {
 
     public void toDelivered(Order order) {
         throw new OrderStateException("Order cannot be delivered");
+    }
+
+    public void toReceived(Order order) {
+        throw new OrderStateException("Order cannot be received");
     }
 
     public abstract String getClassName();

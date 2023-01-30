@@ -16,7 +16,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ReceivedState")
 public class ReceivedState extends State {
 
-    private static final String NAME = "Received";
+    public static final String NAME = "Received";
 
     @Override
     public String getClassName() {

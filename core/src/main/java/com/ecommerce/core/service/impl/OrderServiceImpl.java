@@ -1,10 +1,16 @@
 package com.ecommerce.core.service.impl;
 
+import com.ecommerce.core.data.UpdateOrderStateData;
 import com.ecommerce.core.model.Order;
+import com.ecommerce.core.model.State;
 import com.ecommerce.core.repository.OrderRepository;
 import com.ecommerce.core.service.OrderService;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import static com.ecommerce.core.model.State.METHOD_PREFIX;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -32,12 +38,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderToCollected(Order order) {
-        order.getState().toCollected(order);
-    }
+    public void updateState(Order order, UpdateOrderStateData updateOrderState) {
+        String name = updateOrderState.getName();
+        State state = order.getState();
 
-    @Override
-    public void updateOrderToDelivered(Order order) {
-        order.getState().toDelivered(order);
+        try {
+            String methodName = METHOD_PREFIX + name;
+            Method method = state.getClass().getMethod(methodName, Order.class);
+            method.invoke(state, order);
+
+            this.save(order);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

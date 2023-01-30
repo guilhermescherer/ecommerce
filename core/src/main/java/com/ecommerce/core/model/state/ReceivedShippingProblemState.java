@@ -24,7 +24,7 @@ public class ReceivedShippingProblemState extends State {
 	}
 
 	@Override
-	public void toCollected(Order order) {
-		order.setState(new CollectedState());
+	public void toReceived(Order order) {
+		order.setState(new ReceivedState());
 	}
 }
