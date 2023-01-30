@@ -8,3 +8,10 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${random.int}
+resilience4j:
+  circuitbreaker:
+    instances:
+      orderShipping:
+        slidingWindowSize: 3
+        minimumNumberOfCalls: 2
+        waitDurationInOpenState: 60s

@@ -8,6 +8,7 @@ import com.ecommerce.core.model.Address;
 import com.ecommerce.core.process.OrderProcess;
 import com.ecommerce.shipping.data.OrderShippingData;
 import com.ecommerce.shipping.dto.OrderShippingDto;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class OrderShippingIntegrationAction extends OrderProcess {
     }
 
     @Override
+    @CircuitBreaker(name = "orderShipping", fallbackMethod = "performShippingProblem")
     public OrderBuilder perform(OrderData orderData, OrderBuilder orderBuilder) {
         OrderShippingData orderShippingData = new OrderShippingData();
 
@@ -45,6 +47,11 @@ public class OrderShippingIntegrationAction extends OrderProcess {
 
         LOG.info(String.format("OrderShipping [%d] added to Order", orderShipping.getId()));
 
+        return orderBuilder;
+    }
+
+    public OrderBuilder performShippingProblem(OrderData orderData, OrderBuilder orderBuilder, Exception ex) {
+        orderBuilder.withShippingProblemState();
         return orderBuilder;
     }
 }

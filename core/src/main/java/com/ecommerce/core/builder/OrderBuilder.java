@@ -47,9 +47,8 @@ public class OrderBuilder {
         order.setShipping(id);
     }
 
-    public OrderBuilder withShippingProblem() {
+    public void withShippingProblemState() {
         state = new ReceivedShippingProblemState();
-        return this;
     }
 
     public Order build(OrderService orderService) {
